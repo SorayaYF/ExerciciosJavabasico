@@ -1,4 +1,4 @@
-package br.com.trier;
+package br.com.trier.aula_1;
 
 public class Principal {
 

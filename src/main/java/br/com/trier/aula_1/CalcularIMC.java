@@ -1,4 +1,4 @@
-package br.com.trier;
+package br.com.trier.aula_1;
 
 import javax.swing.JOptionPane;
 
@@ -18,7 +18,6 @@ public class CalcularIMC {
 			double peso = Double.parseDouble(JOptionPane.showInputDialog("Peso (kg): "));
 
 			double altura = Double.parseDouble(JOptionPane.showInputDialog("Altura (m): "));
-			double alturaValidada = validarAltura(altura);
 
 			double imc = calcularIMC(peso, altura);
 			String avaliacao = avaliarIMC(imc, sexo);
@@ -27,20 +26,7 @@ public class CalcularIMC {
 					+ "\nAvaliação do IMC: " + avaliacao + "\n-----------------\n");
 		}
 	}
-
-	public static double validarAltura(double altura) {
-		boolean alturaValida = false;
-		while (!alturaValida) {
-			if (altura >= 0.5 && altura <= 2.5) {
-				alturaValida = true;
-			} else {
-				JOptionPane.showMessageDialog(null, "Altura inválida. Digite novamente.");
-			}
-
-		}
-		return altura;
-	}
-
+	
 	public static double calcularIMC(double peso, double altura) {
 		return peso / (altura * altura);
 	}
