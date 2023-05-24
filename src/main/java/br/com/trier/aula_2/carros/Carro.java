@@ -1,5 +1,11 @@
 package br.com.trier.aula_2.carros;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+
 public class Carro {
 	private String marca;
     private int ano;
@@ -10,18 +16,4 @@ public class Carro {
         this.ano = ano;
         this.corCarro = corCarro;
     }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public int getAno() {
-        return ano;
-    }
-
-	public CorCarro getCorCarro() {
-		return corCarro;
-	} 
-
-
 }
