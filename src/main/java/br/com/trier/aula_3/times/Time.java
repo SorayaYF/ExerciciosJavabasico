@@ -8,6 +8,7 @@ import lombok.Getter;
 @Getter
 
 public class Time {
+	
 	private String nome;
 	private List<Jogador> jogadores;
 
