@@ -24,7 +24,7 @@ public class Livro {
 		sb.append("Preço: R$").append(preco).append("\n");
 		sb.append("Autores:").append("\n");
 		for (Autor autor : autores) {
-			sb.append("- ").append(autor.getNomeCompleto()).append("\n");
+			sb.append("- ").append(autor.getNomeCompleto()).append("|").append(autor.getIdade()).append("|").append(autor.getSexo()).append("\n");
 		}
 		return sb.toString();
 	}
