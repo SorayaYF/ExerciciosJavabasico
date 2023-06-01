@@ -60,6 +60,48 @@ class FaculdadeTest {
     void testObterDisciplinasComProfessorPosGraduacao() {
         assertEquals(1, faculdade.obterDisciplinasComProfessorPosGraduacao().size());
     }
+    
+    @Test
+    @DisplayName("Teste cadastrar professor")
+    void testCadastrarProfessor() {
+        Professor professor = new Professor("Novo Professor", Formacao.GRADUACAO);
+        faculdade.cadastrarProfessor(professor);
+        assertEquals(3, faculdade.getProfessores().size());
+    }
 
+    @Test
+    @DisplayName("Teste cadastrar aluno")
+    void testCadastrarAluno() {
+        Aluno aluno = new Aluno("Novo Aluno");
+        faculdade.cadastrarAluno(aluno);
+        assertEquals(3, faculdade.getAlunos().size());
+    }
 
+    @Test
+    @DisplayName("Teste cadastrar disciplina")
+    void testCadastrarDisciplina() {
+        Professor professor = faculdade.getProfessores().get(0);
+        Disciplina disciplina = new Disciplina("Nova Disciplina", 80);
+        disciplina.setProfessor(professor);
+        faculdade.cadastrarDisciplina(disciplina);
+        assertEquals(3, faculdade.getDisciplinas().size());
+    }
+
+    @Test
+    @DisplayName("Teste matricular aluno em disciplina inválida")
+    void testMatricularAlunoEmDisciplinaInvalida() {
+        Aluno aluno = faculdade.getAlunos().get(0);
+        Disciplina disciplina = new Disciplina("Disciplina Inválida", 50);
+        faculdade.matricularAlunoEmDisciplina(aluno, disciplina);
+        assertEquals(0, aluno.getDisciplinasMatriculadas().size());
+    }
+
+    @Test
+    @DisplayName("Teste obter média de um aluno em uma disciplina")
+    void testObterMediaAlunoDisciplina() {
+        Aluno aluno = faculdade.getAlunos().get(0);
+        Disciplina disciplina = faculdade.getDisciplinas().get(0);
+        double mediaEsperada = (8.5 + 7.2) / 2;
+        assertEquals(mediaEsperada, faculdade.obterDisciplinasComMedia(aluno));
+    }
 }
