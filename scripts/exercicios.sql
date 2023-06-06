@@ -12,7 +12,7 @@ select c.nome as cidades from cidade c where qt_vereadores = (select max(qt_vere
 
 select ca.nome as candidatos from candidato ca inner join cargo c on ca.cargo = c.id where c.nome = 'Prefeito' order by ca.nome;
 
-select ca.nome as candidatos from candidato ca inner join cargo c on ca.cargo = c.id where c.nome = 'Vereador' and ca.nome like '%MARIA%' order by ca.nome;
+select ca.nome as candidatos from candidato ca inner join cargo c on ca.cargo = c.id where c.nome = 'Vereador' and ca.nome like '%MARIA %' order by ca.nome;
 
 select ca.nome as candidatos from candidato ca inner join cargo c on ca.cargo = c.id where c.nome = 'Vereador' and ca.nome like 'Y%' order by ca.nome;
 
@@ -29,3 +29,20 @@ select c.nome, count(*) as quantidade from candidato ca inner join cidade c on c
 select sum(vi.brancos) as brancos, sum(vi.nulos) as nulos from voto_invalido vi inner join cidade c on vi.cidade = c.id inner join cargo cr on vi.cargo = cr.id where cr.nome = 'Prefeito' and c.nome = 'TUBARÃO';
 
 select sum(vi.brancos + vi.nulos) as votos_invalidos from voto_invalido vi inner join cidade c on vi.cidade = c.id inner join cargo cr on vi.cargo = cr.id where cr.nome = 'Prefeito' and c.nome = 'TUBARÃO';
+
+select ca.nome, count(*) quantidade 
+from voto v 
+inner join candidato ca on v.candidato = ca.id 
+inner join cidade c on ca.cidade = c.id 
+inner join cargo cr on ca.cargo = cr.id 
+where cr.nome  = 'Prefeito' and c.nome = 'TUBARÃO' group by ca.nome order by quantidade DESC;
+
+select ca.nome, count(v.id) quantidade 
+from voto v 
+inner join candidato ca on v.candidato = ca.id 
+inner join cidade c on ca.cidade = c.id 
+inner join cargo cr on ca.cargo = cr.id 
+where cr.nome  = 'Vereador' and c.nome = 'TUBARÃO' 
+group by ca.nome order by quantidade DESC;
+
+select p.sigla, COUNT(*) quantidade from voto v inner join candidato ca on v.candidato = ca.id inner join partido p on ca.partido = p.id inner join cidade c on ca.cidade = c.id where c.nome = 'TUBARÃO' group by p.sigla order by quantidade desc;
